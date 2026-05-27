@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="theme-color" content="#070708">
+<meta name="description" content="優しい1000人 名簿 — DREAM KILLER KILLER に1万円払ってくれた優しい人たち。">
+<title>優しい1000人 名簿 · DREAM KILLER KILLER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Zen+Kaku+Gothic+Antique:wght@400;700;900&family=Noto+Sans+JP:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070708;--bg-2:#0d0d10;--acid:#C8FF00;--hot:#FF2E63;--cyan:#00E5FF;
+  --white:#F4F4F2;--gray:#8A8A90;--dim:#1a1a1d;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+*::selection{background:var(--acid);color:#000;}
+html,body{background:var(--bg);color:var(--white);font-family:'Zen Kaku Gothic Antique','Noto Sans JP',sans-serif;-webkit-font-smoothing:antialiased;}
+body{min-height:100vh;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;background:none;border:none;color:inherit;}
+
+.grain{position:fixed;inset:-50%;width:200%;height:200%;z-index:9000;pointer-events:none;opacity:.15;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");animation:grainmove 8s steps(10) infinite;}
+@keyframes grainmove{0%{transform:translate(0,0);}25%{transform:translate(-5%,5%);}50%{transform:translate(5%,-5%);}75%{transform:translate(-3%,3%);}100%{transform:translate(0,0);}}
+
+.topbar{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;background:rgba(7,7,8,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.06);}
+.topbar a.back{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);transition:color .2s;}
+.topbar a.back:hover{color:var(--acid);}
+.topbar .brand{font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.18em;color:var(--white);}
+.topbar .brand i{display:inline-block;width:8px;height:8px;background:var(--acid);border-radius:50%;margin-right:8px;vertical-align:middle;animation:dotPulse 1.6s infinite;}
+@keyframes dotPulse{50%{opacity:.4;transform:scale(.7);}}
+
+.hero{padding:120px 5vw 60px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:80vw;height:80vw;max-width:900px;max-height:900px;background:radial-gradient(circle,rgba(200,255,0,.10) 0%,transparent 60%);pointer-events:none;}
+.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.4em;text-transform:uppercase;color:var(--acid);margin-bottom:18px;position:relative;z-index:2;}
+.hero-title{font-family:'Anton',sans-serif;font-size:clamp(56px,11vw,180px);line-height:.86;letter-spacing:-.025em;text-transform:uppercase;position:relative;z-index:2;}
+.hero-title .acid{color:var(--acid);}
+.hero-title .it{font-style:italic;color:var(--hot);}
+.hero-jp{margin-top:20px;font-family:'Zen Kaku Gothic Antique',sans-serif;font-weight:900;font-size:clamp(24px,3vw,42px);position:relative;z-index:2;}
+.hero-jp em{font-style:normal;color:var(--acid);}
+.hero-sub{margin-top:30px;font-size:clamp(14px,1.3vw,17px);color:var(--gray);line-height:1.85;max-width:680px;margin-left:auto;margin-right:auto;position:relative;z-index:2;}
+.hero-sub b{color:var(--white);font-weight:700;}
+
+.counter-block{margin-top:60px;display:flex;align-items:flex-end;justify-content:center;gap:14px;position:relative;z-index:2;}
+.counter-block .now{font-family:'Anton',sans-serif;font-size:clamp(90px,18vw,260px);line-height:.86;color:var(--acid);letter-spacing:-.04em;text-shadow:0 0 60px rgba(200,255,0,.45);}
+.counter-block .slash{font-family:'Anton',sans-serif;font-size:clamp(60px,10vw,160px);line-height:.86;color:var(--gray);}
+.counter-block .max{font-family:'Anton',sans-serif;font-size:clamp(60px,10vw,160px);line-height:.86;color:var(--white);letter-spacing:-.04em;}
+.counter-label{margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);position:relative;z-index:2;}
+
+.bar-wrap{max-width:900px;margin:30px auto 0;padding:0 5vw;position:relative;z-index:2;}
+.bar{height:14px;background:var(--dim);border:1px solid rgba(255,255,255,.08);border-radius:999px;overflow:hidden;}
+.bar i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--acid) 0%,var(--cyan) 100%);border-radius:999px;transition:width 1.6s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 20px rgba(200,255,0,.4);}
+.bar-meta{display:flex;justify-content:space-between;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);}
+.bar-meta b{color:var(--white);font-weight:400;}
+
+/* ===== GRID ===== */
+.grid-section{padding:60px 5vw 100px;}
+.grid-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:30px;flex-wrap:wrap;gap:14px;}
+.grid-head h2{font-family:'Anton',sans-serif;font-size:clamp(28px,4vw,52px);line-height:.9;text-transform:uppercase;letter-spacing:-.01em;}
+.grid-head .legend{display:flex;gap:18px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray);}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+.legend .l-done i{background:var(--acid);box-shadow:0 0 8px rgba(200,255,0,.6);}
+.legend .l-wait i{background:var(--dim);border:1px solid rgba(255,255,255,.12);}
+
+.grid{display:grid;grid-template-columns:repeat(50,1fr);gap:3px;max-width:1400px;margin:0 auto;}
+.cell{aspect-ratio:1/1;background:var(--dim);border:1px solid rgba(255,255,255,.05);border-radius:1px;transition:transform .15s,background .2s,box-shadow .2s;cursor:pointer;position:relative;}
+.cell:hover{transform:scale(1.4);z-index:5;border-color:var(--white);}
+.cell.done{background:var(--acid);box-shadow:0 0 6px rgba(200,255,0,.55);border-color:rgba(255,255,255,.15);}
+.cell.done:hover{box-shadow:0 0 18px rgba(200,255,0,.9);}
+.cell.milestone{border-color:var(--hot)!important;}
+
+@media(max-width:1100px){.grid{grid-template-columns:repeat(40,1fr);}}
+@media(max-width:760px){.grid{grid-template-columns:repeat(25,1fr);gap:2px;}}
+@media(max-width:480px){.grid{grid-template-columns:repeat(20,1fr);}}
+
+/* tooltip */
+.tip{position:fixed;z-index:9000;background:var(--bg-2);color:var(--white);border:1px solid var(--acid);padding:10px 14px;font-size:12px;line-height:1.5;pointer-events:none;opacity:0;transition:opacity .2s;max-width:280px;font-family:'Zen Kaku Gothic Antique',sans-serif;border-radius:4px;}
+.tip.show{opacity:1;}
+.tip b{color:var(--acid);font-family:'Anton',sans-serif;font-size:14px;letter-spacing:.08em;}
+.tip .d{color:var(--gray);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;margin-top:4px;}
+
+/* ===== LIST (recent named) ===== */
+.list-section{padding:60px 5vw;background:var(--bg-2);border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);}
+.list-section h2{font-family:'Anton',sans-serif;font-size:clamp(28px,4vw,52px);text-transform:uppercase;letter-spacing:-.01em;line-height:.9;margin-bottom:30px;}
+.list-section h2 .acid{color:var(--acid);}
+.kk-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;}
+.kk-item{padding:20px 22px;background:var(--bg);border:1px solid rgba(255,255,255,.08);border-radius:6px;transition:border-color .25s,transform .25s;}
+.kk-item:hover{border-color:var(--acid);transform:translateY(-3px);}
+.kk-item .id{font-family:'Anton',sans-serif;font-size:32px;color:var(--acid);letter-spacing:-.02em;line-height:.9;}
+.kk-item .name{font-family:'Zen Kaku Gothic Antique',sans-serif;font-weight:700;font-size:18px;margin-top:6px;color:var(--white);}
+.kk-item .msg{margin-top:8px;font-size:13px;line-height:1.7;color:var(--gray);}
+.kk-item .date{margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--gray);text-transform:uppercase;}
+
+/* CTA */
+.cta{padding:80px 5vw;text-align:center;background:var(--bg);}
+.cta h3{font-family:'Anton',sans-serif;font-size:clamp(36px,6vw,72px);line-height:.9;letter-spacing:-.02em;text-transform:uppercase;}
+.cta h3 .acid{color:var(--acid);}
+.cta p{margin-top:18px;font-size:16px;line-height:1.85;color:var(--gray);max-width:560px;margin-left:auto;margin-right:auto;}
+.cta-btn{display:inline-block;margin-top:36px;font-family:'Anton',sans-serif;font-size:22px;letter-spacing:.18em;padding:22px 44px;background:var(--acid);color:#000;text-transform:uppercase;border-radius:999px;box-shadow:0 0 0 2px var(--acid),0 10px 40px rgba(200,255,0,.4);transition:transform .3s cubic-bezier(.2,.8,.2,1);}
+.cta-btn:hover{transform:translateY(-3px) scale(1.04);}
+
+.footer{padding:40px 5vw;text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;color:var(--gray);text-transform:uppercase;border-top:1px solid rgba(255,255,255,.06);}
+.footer b{color:var(--white);font-weight:400;}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<div class="topbar">
+  <a class="back" href="index.html">← BACK · DREAM KILLER KILLER</a>
+  <div class="brand"><i></i>THE KIND 1000</div>
+</div>
+
+<section class="hero">
+  <div class="hero-eyebrow">[ THE KIND 1000 · ROSTER ]</div>
+  <h1 class="hero-title">優しい <span class="acid">1000人</span><br><span class="it">名簿。</span></h1>
+  <p class="hero-jp">信用も お金もない 涼晴を、<br>それでも信じて<em>¥10,000</em>払ってくれた人たち。</p>
+  <p class="hero-sub">
+    ここに名前が並ぶのは、<b>夢を笑わせない</b>と決めた優しい人たちです。<br>
+    あなたも、その1人になれます。
+  </p>
+
+  <div class="counter-block">
+    <div class="now" id="cntNow">0000</div>
+    <div class="slash">/</div>
+    <div class="max">1000</div>
+  </div>
+  <div class="counter-label" style="text-align:center;">優しい人 / 上限</div>
+
+  <div class="bar-wrap">
+    <div class="bar"><i id="bar"></i></div>
+    <div class="bar-meta">
+      <span><b id="metaCur">0</b> 人</span>
+      <span>NEXT MEET-UP → <b id="metaNext">10</b> 人</span>
+      <span>あと <b id="metaRem">1000</b> 席</span>
+    </div>
+  </div>
+</section>
+
+<section class="grid-section">
+  <div class="grid-head">
+    <h2>1000マス、ぜんぶ。</h2>
+    <div class="legend">
+      <div class="l-done"><i></i>払ってくれた人</div>
+      <div class="l-wait"><i></i>まだ空いてる席</div>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="list-section">
+  <h2><span class="acid">名前を出してくれた</span>優しい人たち</h2>
+  <div class="kk-list" id="kkList"></div>
+</section>
+
+<section class="cta">
+  <h3>あなたも<br><span class="acid">優しい1人</span>に。</h3>
+  <p>1000人の中の、たった1人。<br>あなたの名前が、ここに永久に刻まれます。</p>
+  <a class="cta-btn" href="index.html#pledge">🤍 1万円を、払う</a>
+</section>
+
+<footer class="footer">
+  © 2026 <b>DREAM KILLER KILLER</b> · THE KIND 1000 · 夢を、笑わせない。
+</footer>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const MAX = 1000;
+const MILESTONES = [10, 20, 50, 200, 500, 1000];
+
+async function load(){
+  let data = { killers: [] };
+  try {
+    const res = await fetch('data/killers.json', {cache:'no-cache'});
+    if(res.ok) data = await res.json();
+  } catch(e){ console.warn('killers.json読み込み失敗', e); }
+  return data.killers || [];
+}
+
+function render(killers){
+  const cur = killers.length;
+  const next = MILESTONES.find(m => m > cur) || MAX;
+  document.getElementById('cntNow').textContent = String(cur).padStart(4,'0');
+  document.getElementById('metaCur').textContent = cur;
+  document.getElementById('metaNext').textContent = next;
+  document.getElementById('metaRem').textContent = MAX - cur;
+  setTimeout(()=>{ document.getElementById('bar').style.width = ((cur/MAX)*100) + '%'; }, 200);
+
+  // grid
+  const grid = document.getElementById('grid');
+  const tip = document.getElementById('tip');
+  const map = new Map(killers.map(k => [k.id, k]));
+  for(let i=1; i<=MAX; i++){
+    const cell = document.createElement('div');
+    cell.className = 'cell';
+    if(map.has(i)) cell.classList.add('done');
+    if(MILESTONES.includes(i)) cell.classList.add('milestone');
+    cell.dataset.id = i;
+    cell.addEventListener('mouseenter', e => {
+      const k = map.get(i);
+      const ms = MILESTONES.includes(i) ? ` · 集会マイルストーン` : '';
+      if(k){
+        tip.innerHTML = `<b>#${String(i).padStart(4,'0')} ${k.name||'優しい人'}</b>${k.msg?`<br>${k.msg}`:''}<div class="d">${k.date||''}${ms}</div>`;
+      } else {
+        tip.innerHTML = `<b>#${String(i).padStart(4,'0')}</b><br>まだ空いてる席<div class="d">あなたが入れます${ms}</div>`;
+      }
+      tip.classList.add('show');
+    });
+    cell.addEventListener('mousemove', e => {
+      const w = tip.offsetWidth, h = tip.offsetHeight;
+      let x = e.clientX + 14, y = e.clientY + 14;
+      if(x + w > window.innerWidth) x = e.clientX - w - 14;
+      if(y + h > window.innerHeight) y = e.clientY - h - 14;
+      tip.style.left = x + 'px';
+      tip.style.top = y + 'px';
+    });
+    cell.addEventListener('mouseleave', () => tip.classList.remove('show'));
+    cell.addEventListener('click', () => {
+      if(!map.has(i)) window.location.href = 'index.html#pledge';
+    });
+    grid.appendChild(cell);
+  }
+
+  // named list (only those with explicit name set, not "優しい人")
+  const list = document.getElementById('kkList');
+  killers.filter(k => k.name && k.name !== '優しい人').forEach(k => {
+    const item = document.createElement('div');
+    item.className = 'kk-item';
+    item.innerHTML = `<div class="id">#${String(k.id).padStart(4,'0')}</div><div class="name">${k.name}</div>${k.msg?`<div class="msg">${k.msg}</div>`:''}<div class="date">${k.date||''}</div>`;
+    list.appendChild(item);
+  });
+  if(!list.children.length){
+    list.innerHTML = `<p style="color:var(--gray);grid-column:1/-1;text-align:center;padding:40px 0;">まだ名前を公開しているのは涼晴だけ。あなたの名前を、ここに刻みませんか？</p>`;
+  }
+}
+
+load().then(render);
+</script>
+</body>
+</html>
