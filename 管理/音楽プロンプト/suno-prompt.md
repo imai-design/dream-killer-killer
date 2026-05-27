@@ -1,0 +1,1 @@
+../../suno-prompt.md
